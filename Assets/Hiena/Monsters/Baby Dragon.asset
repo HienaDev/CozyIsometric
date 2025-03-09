@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22f116a7819c5d5438254e8162faa64e, type: 3}
+  m_Name: Baby Dragon
+  m_EditorClassIdentifier: 
+  monsterPrefab: {fileID: 204651610195943509, guid: 290e9508186d216478c4218b41e5437f,
+    type: 3}
+  monsterName: Baby Dragon
+  age: 1
+  expToLvlUp: 200
+  jobs: 01000000
+  jobsLvl: 01000000
+  evolutions: []
