@@ -141,7 +141,7 @@ public class MouseHoverDetector2D : MonoBehaviour
                     placeable.transform.position = hoveredObject.transform.position + new Vector3(0f, 16f, 0f);
                 }
                 //placeable.transform.position = hoveredObject.transform.position + new Vector3(0f, 16f, 0f);
-                placeable.GetComponentInParent<SpriteRenderer>().sortingOrder = hoveredObject.GetComponentInParent<SpriteRenderer>().sortingOrder + 1;
+                placeable.GetComponentInParent<SpriteRenderer>().sortingOrder = hoveredObject.GetComponentInParent<SpriteRenderer>().sortingOrder + 9;
                 sr.color = Color.red;
             }
 
@@ -185,7 +185,7 @@ public class MouseHoverDetector2D : MonoBehaviour
                     placeable.transform.position = lastSeenObject.transform.position + new Vector3(0f, 16f, -0.008f);
                 }
 
-                placeable.GetComponentInParent<SpriteRenderer>().sortingOrder = lastSeenObject.GetComponentInParent<SpriteRenderer>().sortingOrder + 1;
+                placeable.GetComponentInParent<SpriteRenderer>().sortingOrder = lastSeenObject.GetComponentInParent<SpriteRenderer>().sortingOrder + 9;
                 IsometricTile placeableTile = placeable.GetComponent<IsometricTile>();
                 placeableTile.ToggleSideColliders(true);
                 

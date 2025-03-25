@@ -1331,7 +1331,7 @@ MonoBehaviour:
   placeableTest: {fileID: 2831989765367435809, guid: 8ceae5762993e2749a3f4134eb255b7a,
     type: 3}
   tileParent: {fileID: 814064870}
-  testPathFinding: 1
+  testPathFinding: 0
   createIsometricFloor: {fileID: 814064871}
 --- !u!1 &745341320
 GameObject:
@@ -1491,8 +1491,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4dde1d792c0b754d82c135ba2f514ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorWidth: 50
-  floorHeight: 50
+  floorWidth: 10
+  floorHeight: 10
   floorTile: {fileID: 194948043413498851, guid: 6d08af1ed6311cb419e710580be425aa,
     type: 3}
   startingTile: {fileID: 0}
