@@ -12,8 +12,8 @@ public class IsometricTile : MonoBehaviour
         None
     }
 
-    public int G;
-    public int H;
+    public int G = int.MaxValue;
+    public int H = int.MaxValue;
     public int F => G + H;
 
     public IsometricTile previous;

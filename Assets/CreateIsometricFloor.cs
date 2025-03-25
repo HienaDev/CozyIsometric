@@ -8,6 +8,7 @@ public class CreateIsometricFloor : MonoBehaviour
     [SerializeField] private int floorWidth = 15;
     [SerializeField] private int floorHeight = 4;
     [SerializeField] private GameObject floorTile;
+    private List<GameObject> tiles = new List<GameObject>();
 
     public IsometricTile startingTile;
 
@@ -23,7 +24,19 @@ public class CreateIsometricFloor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            map.ClearNodes();
 
+            foreach(GameObject tile in tiles)
+            {
+                Destroy(tile);
+            }
+
+            tiles.Clear();
+
+            HabboIsometric();
+        }
     }
 
     public void CreateFloorWeirdIsomteric()
@@ -70,6 +83,8 @@ public class CreateIsometricFloor : MonoBehaviour
                 tile.name = "Tile_" + x + "_" + y;
                 tile.transform.SetParent(this.transform);
                 tile.GetComponent<SpriteRenderer>().sortingOrder = 10000 - (int)tile.transform.position.y;
+
+                tiles.Add(tile);
 
                 IsometricTile isometricTile = tile.GetComponent<IsometricTile>();
 

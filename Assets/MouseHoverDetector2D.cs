@@ -81,7 +81,8 @@ public class MouseHoverDetector2D : MonoBehaviour
                 {
                     foreach (IsometricTile isometricTile in lastPath)
                     {
-                        isometricTile.GetComponent<SpriteRenderer>().color = Color.white;
+                        if(isometricTile != null)
+                            isometricTile.GetComponent<SpriteRenderer>().color = Color.white;
                     }
                 }
                 List<IsometricTile> path = pathfinding.FindPath(createIsometricFloor.startingTile, lastSeenObject.GetComponent<IsometricTile>(), createIsometricFloor.map);

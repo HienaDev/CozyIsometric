@@ -13,7 +13,10 @@ namespace Map
             Nodes = new Dictionary<Vector2Int, IsometricTile>();
         }
 
-
+        public void ClearNodes()
+        {
+            Nodes.Clear();
+        }
 
         public void AddNode(Vector2Int pos, IsometricTile node)
         {
