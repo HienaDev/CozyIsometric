@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using static TAG_Sides;
 
@@ -8,31 +9,105 @@ public class MouseHoverDetector2D : MonoBehaviour
     private GameObject lastSeenObject;
     private Side lastSeenSide;
 
-    [SerializeField] private GameObject tableTest;
-    private GameObject table;
+    [SerializeField] private GameObject placeableTest;
+    private GameObject placeable;
 
     [SerializeField] private Transform tileParent;
 
     private bool active = true;
+
+    [SerializeField] private bool testPathFinding = false;
+
+    [SerializeField] private CreateIsometricFloor createIsometricFloor;
+    private List<IsometricTile> lastPath;
+    private Pathfinding pathfinding;
 
     void Start()
     {
         // Get the main camera in the scene
         mainCamera = Camera.main;
 
-        table = Instantiate(tableTest, tileParent);
+        placeable = Instantiate(placeableTest, tileParent);
         
-        table.GetComponent<IsometricTile>().ToggleSideColliders(false);
+        placeable.GetComponent<IsometricTile>().ToggleSideColliders(false);
+
+        pathfinding = new Pathfinding();
     }
 
     public void ToggleActive(bool toggle)
     {
         active = toggle;
-        table.SetActive(toggle);
+        placeable.SetActive(toggle);
+    }
+
+    public void TestPathFinding()
+    {
+        // Convert the mouse position to a world point in 2D space
+        Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+
+        // Perform a 2D raycast at the mouse position
+        RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+
+        // Check if the raycast hit something
+        if (hit.collider != null)
+        {
+            // Get the GameObject that was hit
+            GameObject hoveredObject = hit.collider.gameObject.transform.parent.gameObject;
+            // Get the side that was hit
+            TAG_Sides.Side side = hit.collider.gameObject.GetComponent<TAG_Sides>().side;
+            SpriteRenderer sr = hoveredObject.GetComponentInParent<SpriteRenderer>();
+
+            lastSeenObject = hoveredObject;
+            lastSeenSide = side;
+            // Output the name of the object to the console
+            //Debug.Log("Hovering over: " + hoveredObject.name);
+        }
+        else
+        {
+            if (lastSeenObject != null)
+            {
+                lastSeenObject.GetComponentInParent<SpriteRenderer>().color = Color.white;
+                lastSeenObject = null;
+            }
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (lastSeenObject != null)
+            {
+                Debug.Log(lastSeenObject.GetComponent<IsometricTile>().pos);
+                Debug.Log(lastSeenObject.name);
+                if (lastPath != null)
+                {
+                    foreach (IsometricTile isometricTile in lastPath)
+                    {
+                        isometricTile.GetComponent<SpriteRenderer>().color = Color.white;
+                    }
+                }
+                List<IsometricTile> path = pathfinding.FindPath(createIsometricFloor.startingTile, lastSeenObject.GetComponent<IsometricTile>(), createIsometricFloor.map);
+                foreach (IsometricTile isometricTile in path)
+                {
+                    isometricTile.GetComponent<SpriteRenderer>().color = Color.blue;
+                }
+
+
+
+                lastPath = path;
+
+            }
+        }
     }
 
     void Update()
     {
+
+        if(testPathFinding)
+        {
+            
+                TestPathFinding();
+            return;
+        }
+
         if (!active)
             return; 
         // Convert the mouse position to a world point in 2D space
@@ -54,18 +129,18 @@ public class MouseHoverDetector2D : MonoBehaviour
             {
                 if(side == TAG_Sides.Side.Left)
                 {
-                    table.transform.position = hoveredObject.transform.position + new Vector3(-16f, -8f, 0f);
+                    placeable.transform.position = hoveredObject.transform.position + new Vector3(-16f, -8f, 0f);
                 }
                 else if (side == TAG_Sides.Side.Right)
                 {
-                    table.transform.position = hoveredObject.transform.position + new Vector3(16f, -8f, 0f);
+                    placeable.transform.position = hoveredObject.transform.position + new Vector3(16f, -8f, 0f);
                 }
                 else if (side == TAG_Sides.Side.Top)
                 {
-                    table.transform.position = hoveredObject.transform.position + new Vector3(0f, 16f, 0f);
+                    placeable.transform.position = hoveredObject.transform.position + new Vector3(0f, 16f, 0f);
                 }
-                //table.transform.position = hoveredObject.transform.position + new Vector3(0f, 16f, 0f);
-                table.GetComponentInParent<SpriteRenderer>().sortingOrder = hoveredObject.GetComponentInParent<SpriteRenderer>().sortingOrder + 1;
+                //placeable.transform.position = hoveredObject.transform.position + new Vector3(0f, 16f, 0f);
+                placeable.GetComponentInParent<SpriteRenderer>().sortingOrder = hoveredObject.GetComponentInParent<SpriteRenderer>().sortingOrder + 1;
                 sr.color = Color.red;
             }
 
@@ -98,23 +173,41 @@ public class MouseHoverDetector2D : MonoBehaviour
 
                 if (lastSeenSide == TAG_Sides.Side.Left)
                 {
-                    table.transform.position = lastSeenObject.transform.position + new Vector3(-16f, -8f, -1f);
+                    placeable.transform.position = lastSeenObject.transform.position + new Vector3(-16f, -8f, -0.008f);
                 }
                 else if (lastSeenSide == TAG_Sides.Side.Right)
                 {
-                    table.transform.position = lastSeenObject.transform.position + new Vector3(16f, -8f, -1f);
+                    placeable.transform.position = lastSeenObject.transform.position + new Vector3(16f, -8f, -0.008f);
                 }
                 else if (lastSeenSide == TAG_Sides.Side.Top)
                 {
-                    table.transform.position = lastSeenObject.transform.position + new Vector3(0f, 16f, -1f);
+                    placeable.transform.position = lastSeenObject.transform.position + new Vector3(0f, 16f, -0.008f);
                 }
 
-                table.GetComponentInParent<SpriteRenderer>().sortingOrder = lastSeenObject.GetComponentInParent<SpriteRenderer>().sortingOrder + 1;
-                table.GetComponent<IsometricTile>().ToggleSideColliders(true);
-                lastSeenObject = null;
+                placeable.GetComponentInParent<SpriteRenderer>().sortingOrder = lastSeenObject.GetComponentInParent<SpriteRenderer>().sortingOrder + 1;
+                IsometricTile placeableTile = placeable.GetComponent<IsometricTile>();
+                placeableTile.ToggleSideColliders(true);
+                
+                if(placeableTile.isWalkable)
+                {
+                    if(lastSeenSide == TAG_Sides.Side.Top)
+                        placeableTile.type = IsometricTile.Type.Wall;
+                    else
+                    {
+                        if(lastSeenObject.GetComponent<IsometricTile>().type == IsometricTile.Type.Floor)
+                            placeableTile.type = IsometricTile.Type.Floor;
+                    }
+                }
+                else
+                { 
+                    // Could be something else
+                    placeableTile.type = IsometricTile.Type.Wall;
+                }
 
-                table = Instantiate(tableTest, tileParent);
-                table.GetComponent<IsometricTile>().ToggleSideColliders(false);
+                    lastSeenObject = null;
+
+                placeable = Instantiate(placeableTest, tileParent);
+                placeable.GetComponent<IsometricTile>().ToggleSideColliders(false);
             }
         }
 

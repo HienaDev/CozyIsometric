@@ -4,7 +4,27 @@ using UnityEngine;
 
 public class IsometricTile : MonoBehaviour
 {
+
+    public enum Type
+    {
+        Floor,
+        Wall,
+        None
+    }
+
+    public int G;
+    public int H;
+    public int F => G + H;
+
+    public IsometricTile previous;
+
+    public Vector2Int pos;
+
+    public bool isWalkable = false;
+
     [SerializeField] private Collider2D[] sideColliders;
+    
+    public Type type = Type.None;
 
     public void ToggleSideColliders(bool toggle)
     {
