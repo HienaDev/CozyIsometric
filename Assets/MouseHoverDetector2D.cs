@@ -1,3 +1,4 @@
+using Map;
 using System.Collections.Generic;
 using UnityEngine;
 using static TAG_Sides;
@@ -19,6 +20,7 @@ public class MouseHoverDetector2D : MonoBehaviour
     [SerializeField] private bool testPathFinding = false;
 
     [SerializeField] private CreateIsometricFloor createIsometricFloor;
+
     private List<IsometricTile> lastPath;
     private Pathfinding pathfinding;
 
@@ -28,8 +30,12 @@ public class MouseHoverDetector2D : MonoBehaviour
         mainCamera = Camera.main;
 
         placeable = Instantiate(placeableTest, tileParent);
-        
+
         placeable.GetComponent<IsometricTile>().ToggleSideColliders(false);
+
+
+
+
 
         pathfinding = new Pathfinding();
     }
@@ -81,7 +87,7 @@ public class MouseHoverDetector2D : MonoBehaviour
                 {
                     foreach (IsometricTile isometricTile in lastPath)
                     {
-                        if(isometricTile != null)
+                        if (isometricTile != null)
                             isometricTile.GetComponent<SpriteRenderer>().color = Color.white;
                     }
                 }
@@ -98,19 +104,23 @@ public class MouseHoverDetector2D : MonoBehaviour
             }
         }
     }
-
+    //
     void Update()
     {
 
-        if(testPathFinding)
+        if (Input.GetKeyDown(KeyCode.T))
         {
-            
-                TestPathFinding();
+            testPathFinding = !testPathFinding;
+        }
+
+        if (testPathFinding)
+        {
+            TestPathFinding();
             return;
         }
 
         if (!active)
-            return; 
+            return;
         // Convert the mouse position to a world point in 2D space
         Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
@@ -128,7 +138,7 @@ public class MouseHoverDetector2D : MonoBehaviour
 
             if (sr != null)
             {
-                if(side == TAG_Sides.Side.Left)
+                if (side == TAG_Sides.Side.Left)
                 {
                     placeable.transform.position = hoveredObject.transform.position + new Vector3(-16f, -8f, 0f);
                 }
@@ -166,7 +176,7 @@ public class MouseHoverDetector2D : MonoBehaviour
             }
         }
 
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             if (lastSeenObject != null)
             {
@@ -188,24 +198,36 @@ public class MouseHoverDetector2D : MonoBehaviour
                 placeable.GetComponentInParent<SpriteRenderer>().sortingOrder = lastSeenObject.GetComponentInParent<SpriteRenderer>().sortingOrder + 9;
                 IsometricTile placeableTile = placeable.GetComponent<IsometricTile>();
                 placeableTile.ToggleSideColliders(true);
-                
-                if(placeableTile.isWalkable)
-                {
-                    if(lastSeenSide == TAG_Sides.Side.Top)
+
+                if (placeableTile.isWalkable)
+                {//left = y - 1, right = x + 1
+                    if (lastSeenSide == TAG_Sides.Side.Top)
                         placeableTile.type = IsometricTile.Type.Wall;
                     else
                     {
-                        if(lastSeenObject.GetComponent<IsometricTile>().type == IsometricTile.Type.Floor)
+                        if (lastSeenObject.GetComponent<IsometricTile>().type == IsometricTile.Type.Floor)
+                        {
+                            if (lastSeenSide == TAG_Sides.Side.Left)
+                            {
+                                placeableTile.pos = new Vector2Int(lastSeenObject.GetComponent<IsometricTile>().pos.x, lastSeenObject.GetComponent<IsometricTile>().pos.y - 1);
+                            }
+                            else if (lastSeenSide == TAG_Sides.Side.Right)
+                            {
+                                placeableTile.pos = new Vector2Int(lastSeenObject.GetComponent<IsometricTile>().pos.x + 1, lastSeenObject.GetComponent<IsometricTile>().pos.y);
+                            }
+                            createIsometricFloor.map.AddNode(placeableTile.pos, placeableTile);
+                            Debug.Log("Added node");
                             placeableTile.type = IsometricTile.Type.Floor;
+                        }
                     }
                 }
                 else
-                { 
+                {
                     // Could be something else
                     placeableTile.type = IsometricTile.Type.Wall;
                 }
 
-                    lastSeenObject = null;
+                lastSeenObject = null;
 
                 placeable = Instantiate(placeableTest, tileParent);
                 placeable.GetComponent<IsometricTile>().ToggleSideColliders(false);
@@ -216,7 +238,7 @@ public class MouseHoverDetector2D : MonoBehaviour
         {
             if (lastSeenObject != null)
             {
-
+                createIsometricFloor.map.RemoveNode(lastSeenObject.GetComponent<IsometricTile>().pos);
                 Destroy(lastSeenObject);
                 lastSeenObject = null;
             }

@@ -76,6 +76,11 @@ public class CreateIsometricFloor : MonoBehaviour
         {
             for (int x = 0; x < floorWidth; x++)
             {
+                bool isWalkable = Random.Range(0, 100) > 30;
+
+                if (!isWalkable && !(x == 0 && y == 0))
+                    continue; 
+
                 GameObject tile = Instantiate(floorTile);
 
                 tile.transform.position = new Vector3(x * 16 + y * 16, x * -8 + y * 8, (x * -8f + y * 8f) / 1000f);
@@ -95,7 +100,7 @@ public class CreateIsometricFloor : MonoBehaviour
 
                 isometricTile.type = IsometricTile.Type.Floor;
 
-                bool isWalkable = Random.Range(0, 100) > 30;
+
 
 
                 isometricTile.isWalkable = isWalkable;

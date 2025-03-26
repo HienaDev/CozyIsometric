@@ -24,6 +24,11 @@ namespace Map
             Nodes[pos] = node;
         }
 
+        public void RemoveNode(Vector2Int pos)
+        {
+            Nodes.Remove(pos);
+        }
+
 
     }
 }
