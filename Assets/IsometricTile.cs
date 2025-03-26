@@ -11,6 +11,7 @@ public class IsometricTile : MonoBehaviour
         Floor, // Can be walked on and place as wall
         Wall, // Can be walked on and place as wall
         Decoration, // Can't be walked on but can be placed as wall
+        Door,
         None
     }
 
