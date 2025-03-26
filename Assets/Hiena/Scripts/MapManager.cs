@@ -26,7 +26,9 @@ namespace Map
 
         public void RemoveNode(Vector2Int pos)
         {
+            Debug.Log("Try to remove node: " + Nodes[pos]);
             Nodes.Remove(pos);
+
         }
 
 

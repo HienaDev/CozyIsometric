@@ -26,6 +26,8 @@ public class IsometricTile : MonoBehaviour
     
     public Type type = Type.None;
 
+    public IsometricTile blockingTile;
+
     public void ToggleSideColliders(bool toggle)
     {
         for (int i = 0; i < sideColliders.Length; i++)

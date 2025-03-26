@@ -198,11 +198,18 @@ public class MouseHoverDetector2D : MonoBehaviour
                 placeable.GetComponentInParent<SpriteRenderer>().sortingOrder = lastSeenObject.GetComponentInParent<SpriteRenderer>().sortingOrder + 9;
                 IsometricTile placeableTile = placeable.GetComponent<IsometricTile>();
                 placeableTile.ToggleSideColliders(true);
-
+                //
                 if (placeableTile.isWalkable)
                 {//left = y - 1, right = x + 1
                     if (lastSeenSide == TAG_Sides.Side.Top)
+                    {
+                        IsometricTile lastSeenTile = lastSeenObject.GetComponent<IsometricTile>();
                         placeableTile.type = IsometricTile.Type.Wall;
+                        Debug.Log("Place blocking tile");
+                        createIsometricFloor.map.RemoveNode(lastSeenTile.pos);
+                        placeableTile.blockingTile = lastSeenTile;
+                        lastSeenTile.isWalkable = false;
+                    }
                     else
                     {
                         if (lastSeenObject.GetComponent<IsometricTile>().type == IsometricTile.Type.Floor)
@@ -238,7 +245,14 @@ public class MouseHoverDetector2D : MonoBehaviour
         {
             if (lastSeenObject != null)
             {
-                createIsometricFloor.map.RemoveNode(lastSeenObject.GetComponent<IsometricTile>().pos);
+                IsometricTile lastIsometricTile = lastSeenObject.GetComponent<IsometricTile>();
+
+                if(lastIsometricTile.blockingTile != null)
+                    lastIsometricTile.blockingTile.isWalkable = true;
+
+                createIsometricFloor.map.AddNode(lastIsometricTile.blockingTile.pos, lastIsometricTile.blockingTile);
+
+                createIsometricFloor.map.RemoveNode(lastIsometricTile.pos);
                 Destroy(lastSeenObject);
                 lastSeenObject = null;
             }
