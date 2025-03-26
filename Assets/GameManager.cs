@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,11 +15,28 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MouseHoverDetector2D scriptToPlaceObject;
     private bool placingObject = true;
 
+    [SerializeField] private Vector2Int maxScroll = new Vector2Int(30, 500);
+    [SerializeField] private int initialZoom = 320;
+    [SerializeField] private Slider sliderZoom;
+    [SerializeField] private Camera mainCamera;
+
     // Start is called before the first frame update
     void Start()
     {
         ignoreLayer = GetFirstLayerFromMask(ignoreRaycastLayer);
         clickableLayerInt = GetFirstLayerFromMask(clickableLayer);
+
+        sliderZoom.minValue = maxScroll.x;
+        sliderZoom.maxValue = maxScroll.y;
+
+        sliderZoom.value = initialZoom;
+
+        UpdateZoom();
+    }
+
+    public void UpdateZoom()
+    {
+        mainCamera.orthographicSize = sliderZoom.value;
     }
 
     // Update is called once per frame
