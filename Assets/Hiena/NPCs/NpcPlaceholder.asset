@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ee853a1e4f3e8c409f05d3dcded982b, type: 3}
+  m_Name: NpcPlaceholder
+  m_EditorClassIdentifier: 
+  nameNPC: PlaceHolder
+  frontSprite: {fileID: 21300000, guid: 5249175d1c2f6604b99ac94e01a2e47b, type: 3}
+  backSprite: {fileID: 21300000, guid: a0513539110d8824babb6c8fb6f7b26d, type: 3}

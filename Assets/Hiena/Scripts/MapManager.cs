@@ -42,5 +42,11 @@ namespace Map
             return Nodes[pos];
         }
 
+        public IsometricTile GetRandomNode()
+        {
+            List<Vector3Int> keys = new List<Vector3Int>(Nodes.Keys);
+            return Nodes[keys[Random.Range(0, keys.Count)]];
+        }
+
     }
 }

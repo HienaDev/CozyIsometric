@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.B))
         {
             if (placingObject)
             {
@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
                     Debug.Log("Assigned layer: " + LayerMask.LayerToName(clickableLayerInt) + " to " + theWholeIsland.name);
                 }
                 scriptToPlaceObject.ToggleActive(false);
+
                 placingObject = false;
             }
             else

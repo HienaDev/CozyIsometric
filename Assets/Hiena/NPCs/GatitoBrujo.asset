@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ee853a1e4f3e8c409f05d3dcded982b, type: 3}
+  m_Name: GatitoBrujo
+  m_EditorClassIdentifier: 
+  nameNPC: Gatito
+  frontSprite: {fileID: 21300000, guid: a80a4fd56ce461344a9e9ab5f72958d2, type: 3}
+  backSprite: {fileID: 21300000, guid: 134915923f530d74fb659814b9912229, type: 3}

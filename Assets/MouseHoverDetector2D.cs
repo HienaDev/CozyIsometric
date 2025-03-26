@@ -113,10 +113,7 @@ public class MouseHoverDetector2D : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            testPathFinding = !testPathFinding;
-        }
+
 
         if (testPathFinding)
         {

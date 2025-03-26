@@ -1170,6 +1170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5783983a7b647e94e942a8382eb15f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  createIsometricFloor: {fileID: 814064871}
+  npc: {fileID: 3250994273008408116, guid: 5cae0452d4d66b848ad8a3849828352c, type: 3}
 --- !u!1 &603172425
 GameObject:
   m_ObjectHideFlags: 0
@@ -1472,7 +1474,7 @@ MonoBehaviour:
   placeableTest: {fileID: 2831989765367435809, guid: 8ceae5762993e2749a3f4134eb255b7a,
     type: 3}
   tileParent: {fileID: 814064870}
-  testPathFinding: 1
+  testPathFinding: 0
   createIsometricFloor: {fileID: 814064871}
 --- !u!1 &745341320
 GameObject:
@@ -1632,10 +1634,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4dde1d792c0b754d82c135ba2f514ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorWidth: 25
-  floorHeight: 25
+  floorWidth: 8
+  floorHeight: 8
   floorTile: {fileID: 194948043413498851, guid: 6d08af1ed6311cb419e710580be425aa,
     type: 3}
+  chanceForHole: 0
   startingTile: {fileID: 0}
 --- !u!114 &814064872
 MonoBehaviour:
@@ -1653,8 +1656,8 @@ MonoBehaviour:
   yawSensitivity: 1
   pitchSensitvity: 1
   scaleSensitivity: 0.5
-  minimumAngles: {x: -90, y: -360}
-  maximumAngles: {x: 90, y: 360}
+  minimumAngles: {x: 0, y: 0}
+  maximumAngles: {x: 0, y: 0}
   confineTranslation: 1
   centerTransform: {fileID: 0}
   currentCamera: {fileID: 0}
@@ -4570,6 +4573,8 @@ SceneRoots:
   - {fileID: 910565610}
   - {fileID: 993928090638326710}
   - {fileID: 814064870}
+  - {fileID: 734634717}
+  - {fileID: 598131210}
   - {fileID: 619194133}
   - {fileID: 297097387}
   - {fileID: 2055920423}
@@ -4581,6 +4586,4 @@ SceneRoots:
   - {fileID: 1349531712}
   - {fileID: 1289023493}
   - {fileID: 1700013773}
-  - {fileID: 734634717}
-  - {fileID: 598131210}
   - {fileID: 2105294497}

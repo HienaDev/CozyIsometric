@@ -10,6 +10,8 @@ public class CreateIsometricFloor : MonoBehaviour
     [SerializeField] private GameObject floorTile;
     private List<GameObject> tiles = new List<GameObject>();
 
+    [SerializeField, Range(0, 100)] private int chanceForHole = 0; 
+
     public IsometricTile startingTile;
 
     public MapManager map;
@@ -76,7 +78,7 @@ public class CreateIsometricFloor : MonoBehaviour
         {
             for (int x = 0; x < floorWidth; x++)
             {
-                bool isWalkable = Random.Range(0, 100) > 30;
+                bool isWalkable = Random.Range(0, 100) >= chanceForHole;
 
                 if (!isWalkable && !(x == 0 && y == 0))
                     continue; 
