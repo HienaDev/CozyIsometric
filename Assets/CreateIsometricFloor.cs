@@ -118,9 +118,9 @@ public class CreateIsometricFloor : MonoBehaviour
                     isWalkable = true;
                     tile.GetComponent<SpriteRenderer>().color = Color.white;
                 }
-                isometricTile.pos = new Vector2Int(x, y);
+                isometricTile.pos = new Vector3Int(x, y, 0);
 
-                map.AddNode(new Vector2Int(x, y), isometricTile);
+                map.AddNode(new Vector3Int(x, y, 0), isometricTile);
             }
         }
 
@@ -129,8 +129,8 @@ public class CreateIsometricFloor : MonoBehaviour
         //collider.size = new Vector2((floorWidth + 1) * 32, (floorHeight + 1) * 8);
         //collider.offset = new Vector2((floorWidth) * 16 - 8, (floorHeight) * 4);
 
-        BoxCollider collider = this.gameObject.AddComponent<BoxCollider>();
-        collider.size = new Vector3((floorWidth + floorHeight) * (16 / Mathf.Sqrt(2f)), (floorWidth + floorHeight) * (16 / Mathf.Sqrt(2f)), 0f);
-        collider.center = new Vector3(0f, 0f, 0f);
+        //BoxCollider collider = this.gameObject.AddComponent<BoxCollider>();
+        //collider.size = new Vector3((floorWidth + floorHeight) * (16 / Mathf.Sqrt(2f)), (floorWidth + floorHeight) * (16 / Mathf.Sqrt(2f)), 0f);
+        //collider.center = new Vector3(0f, 0f, 0f);
     }
 }

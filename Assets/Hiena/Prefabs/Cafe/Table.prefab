@@ -10,13 +10,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5744598715065352789, guid: 6d08af1ed6311cb419e710580be425aa,
         type: 3}
-      propertyPath: isWalkable
+      propertyPath: type
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5744598715065352789, guid: 6d08af1ed6311cb419e710580be425aa,
+        type: 3}
+      propertyPath: isWalkable
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 194948043413498851, guid: 6d08af1ed6311cb419e710580be425aa,
         type: 3}
       propertyPath: m_Name
-      value: Isometric_Tile (6) Variant
+      value: Table
       objectReference: {fileID: 0}
     - target: {fileID: 194948043413498851, guid: 6d08af1ed6311cb419e710580be425aa,
         type: 3}
@@ -73,12 +78,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2580807221455848234, guid: 6d08af1ed6311cb419e710580be425aa,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853774041427808931, guid: 6d08af1ed6311cb419e710580be425aa,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4575860896801096605, guid: 6d08af1ed6311cb419e710580be425aa,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: c65ad2796d1192e4cbb6ed2de63f8f5d,
         type: 3}
+    - target: {fileID: 8717433547219916435, guid: 6d08af1ed6311cb419e710580be425aa,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9004761816773215395, guid: 6d08af1ed6311cb419e710580be425aa,
         type: 3}
       propertyPath: m_Enabled

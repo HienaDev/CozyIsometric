@@ -81,22 +81,22 @@ public class Pathfinding
     private List<IsometricTile> GetNeighbourNodes(IsometricTile currentNode, MapManager map)
     {
         List<IsometricTile> neighbourNodes = new List<IsometricTile>();
-        Vector2Int locationToCheck = new Vector2Int(currentNode.pos.x, currentNode.pos.y + 1);
+        Vector3Int locationToCheck = new Vector3Int(currentNode.pos.x, currentNode.pos.y + 1, currentNode.pos.z);
         if (map.Nodes.ContainsKey(locationToCheck))
         {
             neighbourNodes.Add(map.Nodes[locationToCheck]);
         }
-        locationToCheck = new Vector2Int(currentNode.pos.x, currentNode.pos.y - 1);
+        locationToCheck = new Vector3Int(currentNode.pos.x, currentNode.pos.y - 1, currentNode.pos.z);
         if (map.Nodes.ContainsKey(locationToCheck))
         {
             neighbourNodes.Add(map.Nodes[locationToCheck]);
         }
-        locationToCheck = new Vector2Int(currentNode.pos.x + 1, currentNode.pos.y);
+        locationToCheck = new Vector3Int(currentNode.pos.x + 1, currentNode.pos.y, currentNode.pos.z);
         if (map.Nodes.ContainsKey(locationToCheck))
         {
             neighbourNodes.Add(map.Nodes[locationToCheck]);
         }
-        locationToCheck = new Vector2Int(currentNode.pos.x - 1, currentNode.pos.y);
+        locationToCheck = new Vector3Int(currentNode.pos.x - 1, currentNode.pos.y, currentNode.pos.z);
         if (map.Nodes.ContainsKey(locationToCheck))
         {
             neighbourNodes.Add(map.Nodes[locationToCheck]);

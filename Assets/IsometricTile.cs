@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class IsometricTile : MonoBehaviour
 {
-
+    [Flags]
     public enum Type
     {
-        Floor,
-        Wall,
+        Floor, // Can be walked on and place as wall
+        Wall, // Can be walked on and place as wall
+        Decoration, // Can't be walked on but can be placed as wall
         None
     }
 
@@ -18,7 +20,7 @@ public class IsometricTile : MonoBehaviour
 
     public IsometricTile previous;
 
-    public Vector2Int pos;
+    public Vector3Int pos;
 
     public bool isWalkable = false;
 
@@ -26,7 +28,8 @@ public class IsometricTile : MonoBehaviour
     
     public Type type = Type.None;
 
-    public IsometricTile blockingTile;
+    public List<IsometricTile> tilesImBlocking = new List<IsometricTile>();
+    public List<IsometricTile> tilesBlockingMe = new List<IsometricTile>();
 
     public void ToggleSideColliders(bool toggle)
     {

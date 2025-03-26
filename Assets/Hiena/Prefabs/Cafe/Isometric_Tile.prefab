@@ -157,13 +157,14 @@ MonoBehaviour:
   G: 0
   H: 0
   previous: {fileID: 0}
-  pos: {x: 0, y: 0}
+  pos: {x: 0, y: 0, z: 0}
   isWalkable: 0
   sideColliders:
   - {fileID: 2580807221455848234}
   - {fileID: 8717433547219916435}
   - {fileID: 3853774041427808931}
-  type: 2
+  type: 0
+  blockingTile: {fileID: 0}
 --- !u!1 &1681862588998820753
 GameObject:
   m_ObjectHideFlags: 0

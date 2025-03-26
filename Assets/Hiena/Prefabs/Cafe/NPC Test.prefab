@@ -21,7 +21,7 @@ PrefabInstance:
     - target: {fileID: 194948043413498851, guid: 6d08af1ed6311cb419e710580be425aa,
         type: 3}
       propertyPath: m_Name
-      value: Candle
+      value: NPC Test
       objectReference: {fileID: 0}
     - target: {fileID: 194948043413498851, guid: 6d08af1ed6311cb419e710580be425aa,
         type: 3}
@@ -92,7 +92,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 5e36a26aafc031143ad321f9469a0eb8,
+      objectReference: {fileID: 21300000, guid: 5249175d1c2f6604b99ac94e01a2e47b,
         type: 3}
     - target: {fileID: 8717433547219916435, guid: 6d08af1ed6311cb419e710580be425aa,
         type: 3}
@@ -103,6 +103,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004761816773215395, guid: 6d08af1ed6311cb419e710580be425aa,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.50000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004761816773215395, guid: 6d08af1ed6311cb419e710580be425aa,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004761816773215395, guid: 6d08af1ed6311cb419e710580be425aa,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

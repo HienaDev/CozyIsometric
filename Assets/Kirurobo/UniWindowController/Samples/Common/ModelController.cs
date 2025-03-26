@@ -165,6 +165,7 @@ namespace Kirurobo
             }
 
             transform.localScale = originalLocalScale * Mathf.Pow(10f, zoom);
+            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, 1f);
         }
 
         internal virtual void HandleMouse()

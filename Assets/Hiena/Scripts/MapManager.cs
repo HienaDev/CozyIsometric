@@ -7,10 +7,10 @@ namespace Map
     public class MapManager
     {
 
-        public Dictionary<Vector2Int, IsometricTile> Nodes { get; private set; }
+        public Dictionary<Vector3Int, IsometricTile> Nodes { get; private set; }
         public MapManager()
         {
-            Nodes = new Dictionary<Vector2Int, IsometricTile>();
+            Nodes = new Dictionary<Vector3Int, IsometricTile>();
         }
 
         public void ClearNodes()
@@ -18,19 +18,29 @@ namespace Map
             Nodes.Clear();
         }
 
-        public void AddNode(Vector2Int pos, IsometricTile node)
+        public void AddNode(Vector3Int pos, IsometricTile node)
         {
 
             Nodes[pos] = node;
         }
 
-        public void RemoveNode(Vector2Int pos)
+        public void RemoveNode(Vector3Int pos)
         {
             Debug.Log("Try to remove node: " + Nodes[pos]);
             Nodes.Remove(pos);
 
         }
 
+        public bool CheckNode(Vector3Int pos)
+        {
+            return Nodes.ContainsKey(pos);
+
+        }
+
+        public IsometricTile GetNode(Vector3Int pos)
+        {
+            return Nodes[pos];
+        }
 
     }
 }
